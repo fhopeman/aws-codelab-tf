@@ -7,7 +7,7 @@ resource "aws_subnet" "private" {
 
   tags = {
     Name = "${var.base_name}-private-${count.index}"
-    Tier = "private"
+    tier = "private"
   }
 }
 

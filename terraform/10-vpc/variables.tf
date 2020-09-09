@@ -4,6 +4,6 @@ variable "vpc_cidr" {
 }
 
 variable "base_name" {
-  type = string
+  type    = string
   default = "fabian"
 }
