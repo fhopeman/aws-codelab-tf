@@ -1,1 +1,1 @@
-# aws-codelab-tf
+# AWS codelab with terraform

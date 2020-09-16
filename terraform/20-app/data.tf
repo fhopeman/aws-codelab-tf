@@ -27,15 +27,3 @@ data "aws_ami" "amazon_linux_2" {
     values = ["amzn2-ami-hvm-*-x86_64-ebs"]
   }
 }
-
-#resource "aws_ami_copy" "amazon_linux_2_encrypted" {
-#  name              = "${data.aws_ami.amazon_linux_2.name}-encrypted"
-#  description       = "${data.aws_ami.amazon_linux_2.description} (encrypted)"
-#  source_ami_id     = data.aws_ami.amazon_linux_2.id
-#  source_ami_region = var.region
-#  encrypted         = true
-#
-#  tags = {
-#    ImageType      = "encrypted-amzn2-linux"
-#  }
-#}

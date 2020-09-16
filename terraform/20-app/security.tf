@@ -1,5 +1,5 @@
-resource "aws_security_group" "ec2_instance" {
-  name   = "${var.base_name}-ec2-instance"
+resource "aws_security_group" "yocto" {
+  name   = "${var.base_name}-yocto"
   vpc_id = data.aws_vpc.this.id
 
   ingress {
@@ -8,14 +8,24 @@ resource "aws_security_group" "ec2_instance" {
     to_port   = 8080
 
     cidr_blocks = [
-      var.my_ip_cidr
+      data.aws_vpc.this.cidr_block
     ]
   }
 
   egress {
-    protocol  = "-1"
-    from_port = 0
-    to_port   = 0
+    protocol  = "tcp"
+    from_port = 443
+    to_port   = 443
+
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+  }
+
+  egress {
+    protocol  = "tcp"
+    from_port = 80
+    to_port   = 80
 
     cidr_blocks = [
       "0.0.0.0/0"
@@ -23,9 +33,8 @@ resource "aws_security_group" "ec2_instance" {
   }
 }
 
-
-resource "aws_security_group" "elb" {
-  name   = "${var.base_name}-elb"
+resource "aws_security_group" "yocto_elb" {
+  name   = "${var.base_name}-yocto-elb"
   vpc_id = data.aws_vpc.this.id
 
   ingress {
@@ -39,12 +48,12 @@ resource "aws_security_group" "elb" {
   }
 
   egress {
-    protocol  = "-1"
-    from_port = 0
-    to_port   = 0
+    protocol  = "tcp"
+    from_port = 8080
+    to_port   = 8080
 
     cidr_blocks = [
-      "0.0.0.0/0"
+      data.aws_vpc.this.cidr_block
     ]
   }
 }

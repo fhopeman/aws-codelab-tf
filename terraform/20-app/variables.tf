@@ -5,7 +5,7 @@ variable "base_name" {
 
 variable "my_ip_cidr" {
   type    = string
-  default = "1.2.3.4/32"
+  default = "134.101.168.56/32"
 }
 
 variable "instance_type" {

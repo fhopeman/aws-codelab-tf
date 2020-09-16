@@ -1,13 +1,18 @@
 resource "aws_elb" "yocto" {
-  name = "${var.team_name}-yocto-elb"
-  subnets = ["${aws_subnet.publicsubnets.*.id}"]
-  security_groups = ["${aws_security_group.elb.id}"]
+  name = "${var.base_name}-yocto"
+  subnets = data.aws_subnet_ids.public.ids
+
+  security_groups = [
+    aws_security_group.yocto_elb.id
+  ]
+
   listener {
-    instance_port = 8080
-    instance_protocol = "http"
-    lb_port = 80
     lb_protocol = "http"
+    lb_port = 80
+    instance_protocol = "http"
+    instance_port = 8080
   }
+
   health_check {
     healthy_threshold = 2
     interval = 5
