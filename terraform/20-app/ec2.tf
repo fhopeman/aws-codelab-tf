@@ -19,7 +19,7 @@ resource "aws_launch_configuration" "this" {
   image_id                    = data.aws_ami.amazon_linux_2.image_id
   instance_type               = var.instance_type
   user_data                   = data.template_file.userdata.rendered
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   iam_instance_profile        = aws_iam_instance_profile.yocto.arn
 
    security_groups             = [
