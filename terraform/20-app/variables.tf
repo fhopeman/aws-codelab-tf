@@ -1,6 +1,5 @@
 variable "base_name" {
   type    = string
-  default = "fabian"
 }
 
 variable "my_ip_cidr" {
