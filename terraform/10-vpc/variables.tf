@@ -5,5 +5,4 @@ variable "vpc_cidr" {
 
 variable "base_name" {
   type    = string
-  default = "fabian"
 }
