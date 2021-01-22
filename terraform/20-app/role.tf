@@ -1,5 +1,5 @@
-resource "aws_iam_role" "yocto" {
-  name = "${var.base_name}-yocto"
+resource "aws_iam_role" "nginx" {
+  name = "${var.base_name}-nginx"
 
   assume_role_policy = <<EOF
 {
@@ -17,13 +17,13 @@ resource "aws_iam_role" "yocto" {
 EOF
 }
 
-resource "aws_iam_policy_attachment" "yocto_ssm" {
+resource "aws_iam_policy_attachment" "nginx_ssm" {
   name       = "${var.base_name}-yocto-ssm"
-  roles      = [aws_iam_role.yocto.name]
+  roles      = [aws_iam_role.nginx.name]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
-resource "aws_iam_instance_profile" "yocto" {
-  name = "${var.base_name}-yocto"
-  role = aws_iam_role.yocto.id
+resource "aws_iam_instance_profile" "nginx" {
+  name = "${var.base_name}-nginx"
+  role = aws_iam_role.nginx.id
 }

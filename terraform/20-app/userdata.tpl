@@ -1,4 +1,5 @@
 #!/bin/bash -xe
-yum install -y docker
-service docker start
-docker run -dp 8080:8080 felixb/yocto-httpd
+
+yum update -y
+amazon-linux-extras install -y nginx1
+service nginx start
