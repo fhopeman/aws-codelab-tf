@@ -13,6 +13,11 @@ resource "aws_instance" "nginx" {
     aws_security_group.nginx.id
   ]
 
+  root_block_device {
+    encrypted             = true
+    delete_on_termination = true
+  }
+
   tags = merge(local.default_tags, {
     Name = var.base_name
   })
