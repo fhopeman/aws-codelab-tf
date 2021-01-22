@@ -36,8 +36,8 @@ resource "aws_security_group" "nginx" {
   tags = local.default_tags
 }
 
-resource "aws_security_group" "elb" {
-  name   = "${var.base_name}-nginx-elb"
+resource "aws_security_group" "alb" {
+  name   = "${var.base_name}-alb"
   vpc_id = data.aws_vpc.this.id
 
   ingress {
